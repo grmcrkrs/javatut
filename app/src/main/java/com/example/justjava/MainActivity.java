@@ -43,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = quantity * 5;
-       String priceMessage = "Total: $" + price;
-       priceMessage = priceMessage + "\nThank You!";
-       displayMessage(priceMessage);
-        calculatePrice(quantity, 10);
+       int price = calculatePrice();
+        String priceMessage = "Total: $" + price;
+        priceMessage = priceMessage + "\nThank You!";
+        displayMessage(priceMessage);
     }
 
     /**this method should increase the quanitiy when the plus button is clicked
@@ -79,13 +78,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * this method takes number of coffees and price of each as inputs, then calculates the total
-     * then it returns that total as an int.
-     * @param quantity is number of coffees
-     * @param pricePerCup is dollars per cup
+     * this method calculates the price of the order, storing that value in the
+     * @return price is an int = quantity of cups * pricePerCup
      */
-    private int calculatePrice(int quantity, int pricePerCup){
-        int totalPrice = quantity * pricePerCup;
-        return totalPrice;
+    private int calculatePrice(){
+        int price = quantity * pricePerCup;
+        return price;
     }
 }
