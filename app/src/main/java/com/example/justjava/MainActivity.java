@@ -44,9 +44,21 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
        int price = calculatePrice();
-        String priceMessage = "Total: $" + price;
-        priceMessage = priceMessage + "\nThank You!";
+        String priceMessage = createOrderSummary(price);
         displayMessage(priceMessage);
+    }
+
+    /**
+     * this method creates a message that uses price and quantity and returns a string
+     * @param price of the order
+     * @return priceMessage
+     */
+    private String createOrderSummary(int price) {
+        String priceMessage = "Name: Kaptain Kunal";
+        priceMessage = priceMessage + "\nQuantity: " + quantity;
+        priceMessage = priceMessage + "\nTotal :$" + price;
+        priceMessage = priceMessage + "\nThank you!";
+        return priceMessage;
     }
 
     /**this method should increase the quanitiy when the plus button is clicked
