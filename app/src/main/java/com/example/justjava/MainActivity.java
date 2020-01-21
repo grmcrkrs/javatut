@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     int quantity = 0;
     int pricePerCup = 5;
 
+    /**
+     * this method runs on the app start, or creation
+     * and calls the setContentView method that uses the
+     * layout resource R.layout.activity_main which is the xml
+     * layout for our app.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView priceTextView = findViewById(R.id.order_summary_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
@@ -78,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
     /**
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView orderSummary = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView orderSummary = findViewById(R.id.order_summary_text_view);
         orderSummary.setText(message);
     }
 
