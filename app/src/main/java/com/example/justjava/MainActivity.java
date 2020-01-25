@@ -66,9 +66,19 @@ public class MainActivity extends AppCompatActivity {
         //to the createOrderSummary method as an additional argument, see below;
         //you must also change the createOrderSummary method to expect two arguments
         //and must pass the right arguments in the right order;
+        //now that we have added a second checkbox, we had a third input parameter
+        //to the createOrderSummary method to pass that variable to that method.
+        //Then below, in that method we have to change the method signature
+        //to look for and accept the third value. But you must tell it what
+        //type of value it should accept, telling it in the method signature;
         CheckBox chocCheckBox = findViewById(R.id.chocolateCheckBox);
         boolean hasChocolate =chocCheckBox.isChecked();
+        //the next line initializes a variable of type String called priceMessage
+        //this variable is set to the return value of createOrderSummary
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
+        //the next line calls the displayMessage method with the input parameter
+        //of priceMessage, a string comprised of return value of the createOrderSummary
+        //method.
         displayMessage(priceMessage);
     }
 
@@ -76,10 +86,12 @@ public class MainActivity extends AppCompatActivity {
      * this method creates a message that uses price and quantity and returns a string
      * @param price of the order
      * @param hasWhippedCream boolean checkstate of the whippedCreamCheckBox
+     * @param hasChocolate boolean value of isChecked for chocolateCheckBox
      * @return priceMessage
      */
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate) {
-        //this method is expecting the variables /price/ and /hasWhippedCream;
+        //this method is expecting the variables /price/ and /hasWhippedCream
+        // and /hasChocolate;
         //these parameters were passed to the variable in the SubmitOrder method;
         //this method is being called solely in the SubmitOrder method.
         //the second variable name does not have to match the variable name
@@ -116,9 +128,21 @@ public class MainActivity extends AppCompatActivity {
     }
     /**
      * This method displays the given text on the screen.
+     * @param message expects a String that will be displayed when the method is called
      */
     private void displayMessage(String message) {
+        //this method is private, only to be used in this class
+        //void means that the method does not return any value
+        //the name of the method is displayMessage
+        //the input parameter of this method is a string (the variable message
+        //is different than the name of the variable passed to it
+        //but that doesn't matter, only that the String passed to it now has the
+        //variable name /message
+        //the TextView named by findViewById is set to the variable name orderSummary
         TextView orderSummary = findViewById(R.id.order_summary_text_view);
+        //then the method .setText is called on that TextView /orderSummary
+        //and the input parameter is the String /message that was passed into the
+        //method
         orderSummary.setText(message);
     }
 
