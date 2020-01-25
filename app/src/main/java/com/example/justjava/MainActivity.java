@@ -12,9 +12,11 @@ package com.example.justjava;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
-//import android.util.Log;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -51,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        EditText nameBox = findViewById(R.id.guestNameTextView);
+        String guestName = nameBox.getText().toString();
+        //this last bit is a bit tricky. I thought it would CharSequence type variable,
+        //with name guestName, initialized to nameBox.getText() but this gave me an error when I
+        //Passed it as an argument into the createOrderSummary method. Apparently it likes String
+        //but not CharSequence. So I had to call getText on nameBox, and then call toString()
+        //on the result. This gives us a String, which we can pass into the createOrderSummary
+        //method, which will let us work with it and actually show it on the screen later when the
+        //submitOrder method is called.
         CheckBox checkBox = findViewById(R.id.whippedCreamCheckBox);
         //initialize the variable for the checkBox that I will be referencing
         boolean hasWhippedCream = checkBox.isChecked();
@@ -75,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate =chocCheckBox.isChecked();
         //the next line initializes a variable of type String called priceMessage
         //this variable is set to the return value of createOrderSummary
-        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, guestName);
         //the next line calls the displayMessage method with the input parameter
         //of priceMessage, a string comprised of return value of the createOrderSummary
         //method.
@@ -89,14 +100,14 @@ public class MainActivity extends AppCompatActivity {
      * @param hasChocolate boolean value of isChecked for chocolateCheckBox
      * @return priceMessage
      */
-    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate) {
+    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String guestName) {
         //this method is expecting the variables /price/ and /hasWhippedCream
         // and /hasChocolate;
         //these parameters were passed to the variable in the SubmitOrder method;
         //this method is being called solely in the SubmitOrder method.
         //the second variable name does not have to match the variable name
         //that was passed into arguments previously;
-        String priceMessage = "Name: Kaptain Kunal";
+        String priceMessage = "Name: Crazy " + guestName;
         priceMessage = priceMessage + "\nQuantity: " + quantity;
         priceMessage = priceMessage + "\nTotal :$" + price;
         priceMessage += "\nHas Whipped Cream: " + hasWhippedCream;
