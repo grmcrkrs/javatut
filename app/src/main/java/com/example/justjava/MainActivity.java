@@ -1,7 +1,7 @@
 /**
  * IMPORTANT: Make sure you are using the correct package name. 
  * This example uses the package name:
- * package com.example.android.justjava
+ * package com.example.justjava
  * If you get an error when copying this code into Android studio, update it to match teh package name found
  * in the project's AndroidManifest.xml file.
  **/
@@ -10,6 +10,7 @@ package com.example.justjava;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -26,7 +28,7 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    int quantity = 2;
     int pricePerCup = 5;
 
     /**
@@ -71,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
         //to check the state of the checkBox, call the method .isChecked on it
         //checkBox.isChecked() returns true or false, stored in the boolean type variable
         //hasWhippedCream;
-       int price = calculatePrice();
-       //in order to use that true or false value stored in boolean hasWhippedCream
+        //in order to use that true or false value stored in boolean hasWhippedCream
         //in the createOrderSummary method, you must pass that boolean variable
         //to the createOrderSummary method as an additional argument, see below;
         //you must also change the createOrderSummary method to expect two arguments
@@ -83,14 +84,22 @@ public class MainActivity extends AppCompatActivity {
         //to look for and accept the third value. But you must tell it what
         //type of value it should accept, telling it in the method signature;
         CheckBox chocCheckBox = findViewById(R.id.chocolateCheckBox);
-        boolean hasChocolate =chocCheckBox.isChecked();
+        boolean hasChocolate = chocCheckBox.isChecked();
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
         //the next line initializes a variable of type String called priceMessage
         //this variable is set to the return value of createOrderSummary
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, guestName);
         //the next line calls the displayMessage method with the input parameter
         //of priceMessage, a string comprised of return value of the createOrderSummary
         //method.
-        displayMessage(priceMessage);
+//        displayMessage(priceMessage);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_SUBJECT, (("Coffee Order for")+ guestName));
+        intent.putExtra(Intent.EXTRA_TEXT, (priceMessage));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
@@ -119,14 +128,25 @@ public class MainActivity extends AppCompatActivity {
     /**this method should increase the quanitiy when the plus button is clicked
      */
     public void increment(View view) {
-        quantity = quantity + 1;
-        displayQuantity(quantity);
+        if (quantity == 100) { //test condition to make sure the user doesn't order over 100 cups
+            Toast.makeText(this, "You cannot order more than 100 cups", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+            quantity = quantity + 1;
+            displayQuantity(quantity);
+        }
     }
 
     /**this method decreases the quantity, or should once it is fixed, when the minus button is clicked
      */
     public void decrement(View view) {
-        quantity = quantity - 1;
+        if (quantity == 1) { //test condition to make sure the user doesn't order negative #of cups
+            Toast.makeText(this, "You cannot order less than ONE cup", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
+            quantity = quantity - 1;
         displayQuantity(quantity);
     }
     /**
@@ -134,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayQuantity(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setTextSize(number + 14);
+//        quantityTextView.setTextSize(number + 14);
         quantityTextView.setText("" + number);
     }
     /**
@@ -159,10 +179,27 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * this method calculates the price of the order, storing that value in the
+     * @param addChocolate boolean for the chocolate checkbox
+     * @param addWhippedCream boolean for the whipped cream checkbox
      * @return price is an int = quantity of cups * pricePerCup
      */
-    private int calculatePrice(){
-        int price = quantity * pricePerCup;
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate){
+        int basePrice = 5; //if user wants one cup
+//        if ((addWhippedCream) && (addChocolate == false)) {
+//            basePrice += 1;
+//        } else if((addChocolate) && (addWhippedCream == false)) {
+//            basePrice += 2;
+//        } else if((addWhippedCream) && (addChocolate)) {
+//            basePrice += 3;
+//        } unneccesarily difficult. See next
+        if (addWhippedCream) { //if user wants whipped cream topping, this if runs
+            basePrice += 1;
+        }
+        if (addChocolate) { //if user wants chocolate, this runs, independent of whether they got WC or not
+            basePrice += 2;
+        }
+        int price = quantity * basePrice;
+        pricePerCup = price;
         return price;
     }
 }
