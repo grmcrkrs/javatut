@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="chocolate">Añadir chocolate?</string>
+    <string name="has_chocolate_topping">¿Tiene salsa de chocolate?</string>
+    <string name="has_whipped_cream">¿Tiene crema batida?</string>
+    <string name="hintText">Escribe tu nombre</string>
+    <string name="minus">-</string>
+    <string name="name">Nombre</string>
+    <string name="order">ORDEN</string>
+    <string name="plus">+</string>
+    <string name="quantity_text">CANTIDAD:</string>
+    <string name="startingQuantity">2</string>
+    <string name="thank_you">Gracias!</string>
+    <string name="toppings">Coberturas</string>
+    <string name="total">Total:</string>
+    <string name="whipped_cream">Añadir crema batida?</string>
+</resources>
