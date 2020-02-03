@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<!--    title of the app [char limit:15]-->
     <string name="app_name">Just Java</string>
+<!--    do they want chocolate? [char limit:15]-->
     <string name="chocolate">Añadir chocolate?</string>
+<!--    do they want chocolate topping? [char limit:15]-->
     <string name="has_chocolate_topping">¿Tiene salsa de chocolate?</string>
+<!--    do they want whipped cream [char limit:15]-->
     <string name="has_whipped_cream">¿Tiene crema batida?</string>
+<!--    hint text in the edit text box telling them to write their name [char limit:15]-->
     <string name="hintText">Escribe tu nombre</string>
+<!--    math symbol minus [char limit:15]-->
     <string name="minus">-</string>
-    <string name="name">Nombre</string>
+<!--    Name for the order summary. It will be shown in the format of "Name: Amy" where Amy is the
+      user's name. [CHAR LIMIT=NONE]-->
+    <string name="name">Nombre: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+<!--    text title preceeding the order [char limit:15]-->
     <string name="order">ORDEN</string>
+<!--    math symbol plus [char limit:15]-->
     <string name="plus">+</string>
+<!--    how many do they want? [char limit:15]-->
     <string name="quantity_text">CANTIDAD:</string>
+<!--    the beginning number of coffees displayed [char limit:15]-->
     <string name="startingQuantity">2</string>
+<!--    thank the user for ordering [char limit:5]-->
     <string name="thank_you">Gracias!</string>
+<!--    the ingredients the customer would like in their coffee. [char limit:15]-->
     <string name="toppings">Coberturas</string>
+<!--    total [char limit:15]-->
     <string name="total">Total:</string>
+<!--    add whipped cream [char limit:15]-->
     <string name="whipped_cream">Añadir crema batida?</string>
+    <string name="order_summary_name">Nombre: Loco</string>
 </resources>

@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 /**
  * This app displays an order form to order coffee.
  */
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 //        displayMessage(priceMessage); //no longer displays the message, but sends it to and email
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("*/*");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Coffee Order for"+ guestName);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Coffee Order for "+ guestName);
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         //this method is being called solely in the SubmitOrder method.
         //the second variable name does not have to match the variable name
         //that was passed into arguments previously;
-        String priceMessage = "Name: Crazy " + guestName;
+        String priceMessage = getString(R.string.order_summary_name) + guestName;
         priceMessage = priceMessage + "\n" + getString(R.string.quantity_text) + quantity;
         priceMessage = priceMessage + "\n" + getString(R.string.total) + price;
         priceMessage += "\n" + getString(R.string.has_whipped_cream) + hasWhippedCream;

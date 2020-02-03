@@ -1,17 +1,33 @@
 <resources>
+<!--    Title for the application [CHAR LIMIT=12]-->
     <string name="app_name">Just Java</string>
+<!--    hint text to display in the edit text box for the user's name [char limit=15]-->
     <string name="hintText">Type Out Your Name</string>
+    <!--    header for the different ingredients to go in the coffee [char limit=15]-->
     <string name="toppings">Toppings</string>
+    <!--    checkbox text for whipped cream topping [char limit=15]-->
     <string name="whipped_cream">Add Whipped Cream?</string>
+    <!--    checkbox text for chocolate topping [char limit=15]-->
     <string name="chocolate">Add Chocolate?</string>
+    <!--    the minus sign math operator [char limit=15]-->
     <string name="minus">-</string>
+    <!--    the plus sign math operator [char limit=15]-->
     <string name="plus">+</string>
+    <!--    the button text to finish the ordering process [char limit=15]-->
     <string name="order">ORDER</string>
+    <!--    the number of coffees displayed to start off with [char limit=15]-->
     <string name="startingQuantity">2</string>
+    <!--    the user's name [char limit=15]-->
     <string name="name">Name</string>
+    <!--    Text displayed in the order summary thanking the customer [char limit=15]-->
     <string name="thank_you">Thank You!</string>
+    <!--    Text displayed in the order summary that denotes whether or not they want chocolate [char limit=15]-->
     <string name="has_chocolate_topping">Has Chocolate Topping:</string>
+    <!--    header for the total  [char limit=15]-->
     <string name="total">Total:</string>
+    <!--    Text displayed in the order summary that denotes whether or not they want whipped cream [char limit=15]-->
     <string name="has_whipped_cream">Has Whipped Cream:</string>
+    <!--    quantity or number of coffees: [char limit=15]-->
     <string name="quantity_text">Quantity:</string>
+    <string name="order_summary_name">Name: Crazy</string>
 </resources>
